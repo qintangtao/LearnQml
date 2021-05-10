@@ -1,0 +1,31 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/aboutBackground.png</file>
+        <file>images/flow/01.png</file>
+        <file>images/flow/02.png</file>
+        <file>images/flow/03.png</file>
+        <file>images/flow/04.png</file>
+        <file>images/flow/05.png</file>
+        <file>images/close.png</file>
+        <file>images/close_hover.png</file>
+        <file>images/left_bar/msg.png</file>
+        <file>images/left_bar/msg_hover.png</file>
+        <file>images/left_bar/msg_selected.png</file>
+        <file>images/left_bar/contact.png</file>
+        <file>images/left_bar/contact_hover.png</file>
+        <file>images/left_bar/contact_selected.png</file>
+        <file>images/left_bar/collect.png</file>
+        <file>images/left_bar/collect_hover.png</file>
+        <file>images/left_bar/collect_selected.png</file>
+        <file>images/left_bar/folder.png</file>
+        <file>images/left_bar/folder_hover.png</file>
+        <file>images/left_bar/folder_selected.png</file>
+        <file>images/left_bar/look.png</file>
+        <file>images/left_bar/look_hover.png</file>
+        <file>images/left_bar/look_selected.png</file>
+        <file>images/left_bar/more.png</file>
+        <file>images/left_bar/more_hover.png</file>
+        <file>images/left_bar/more_selected.png</file>
+        <file>images/mute.png</file>
+    </qresource>
+</RCC>

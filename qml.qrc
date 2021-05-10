@@ -1,0 +1,27 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/AGrad.qml</file>
+        <file>qml/Coverflow.qml</file>
+        <file>qml/ACleavage.qml</file>
+        <file>qml/ADiagonal.qml</file>
+        <file>qml/ACircle.qml</file>
+        <file>qml/AWheel.qml</file>
+        <file>qml/test.qml</file>
+        <file>qml/TMoveArea.qml</file>
+        <file>qml/FramelessWindow.qml</file>
+        <file>qml/TFlatButton.qml</file>
+        <file>qml/TResizeArea.qml</file>
+        <file>qml/ListRecordModel.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>qml/Global.qml</file>
+        <file>qml/qmldir</file>
+        <file>qml/ImageButton.qml</file>
+        <file>qml/js/common.js</file>
+        <file>qml/TImageButton.qml</file>
+        <file>qml/RoundImageButton.qml</file>
+        <file>qml/TTransArea.qml</file>
+        <file>qml/TDragItem.qml</file>
+        <file>qml/TResizeBorder.qml</file>
+    </qresource>
+</RCC>
