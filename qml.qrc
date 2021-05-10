@@ -23,5 +23,12 @@
         <file>qml/TTransArea.qml</file>
         <file>qml/TDragItem.qml</file>
         <file>qml/TResizeBorder.qml</file>
+        <file>qml/MainBar.qml</file>
+        <file>qml/WindowControl.qml</file>
+        <file>qml/page/MessagePage.qml</file>
+        <file>qml/page/ContactPage.qml</file>
+        <file>qml/page/CollectPage.qml</file>
+        <file>qml/page/FolderPage.qml</file>
+        <file>qml/page/LookPage.qml</file>
     </qresource>
 </RCC>

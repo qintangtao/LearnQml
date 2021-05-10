@@ -35,7 +35,7 @@ Page {
                 anchors.bottom: parent.bottom
                 anchors.leftMargin: 16
                 verticalAlignment: Text.AlignVCenter
-                text: Global.appname
+                text: qsTr("Folder")
                 font.pixelSize: 18
                 font.bold: true
             }
