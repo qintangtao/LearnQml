@@ -259,6 +259,10 @@ FramelessWindow {
                 imageWidth: 12
                 imageHeight: 12
                 padding: 0
+                leftInset: 0
+                rightInset: 0
+                topInset: 0
+                bottomInset: 0
                 hoveredColor: "#E5E5E5"
                 pressedColor: "#CDCDCD"
                 normalUrl: imgPath + "top.png"
@@ -273,6 +277,10 @@ FramelessWindow {
                 imageWidth: 16
                 imageHeight: 16
                 padding: 0
+                leftInset: 0
+                rightInset: 0
+                topInset: 0
+                bottomInset: 0
                 hoveredColor: "#E5E5E5"
                 pressedColor: "#CDCDCD"
                 normalUrl: imgPath + "min.png"
@@ -288,6 +296,10 @@ FramelessWindow {
                 imageWidth: 16
                 imageHeight: 16
                 padding: 0
+                leftInset: 0
+                rightInset: 0
+                topInset: 0
+                bottomInset: 0
                 hoveredColor: "#E5E5E5"
                 pressedColor: "#CDCDCD"
                 normalUrl: isMaximized() ? imgPath + "max_restore.png" : imgPath + "max.png"
@@ -303,6 +315,10 @@ FramelessWindow {
                 imageWidth: 16
                 imageHeight: 16
                 padding: 0
+                leftInset: 0
+                rightInset: 0
+                topInset: 0
+                bottomInset: 0
                 hoveredColor: "#FA5151"
                 pressedColor: "#DC4848"
                 normalUrl: imgPath + "close.png"
