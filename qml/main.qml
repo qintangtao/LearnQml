@@ -49,28 +49,16 @@ FramelessWindow {
                 id: contactPage
             }
 
-            Page {
+            CollectPage {
                 id: collectPage
-                Label {
-                    anchors.fill: parent
-                    text: qsTr("collect page")
-                }
             }
 
-            Page {
+            FolderPage {
                 id: folderPage
-                Label {
-                    anchors.fill: parent
-                    text: qsTr("folder page")
-                }
             }
 
-            Page {
+            LookPage {
                 id: lookPage
-                Label {
-                    anchors.fill: parent
-                    text: qsTr("look page")
-                }
             }
 
             Component.onCompleted:{
