@@ -45,7 +45,7 @@ FramelessWindow {
 
             }
 
-            MessagePage {
+            ContactPage {
                 id: contactPage
             }
 
