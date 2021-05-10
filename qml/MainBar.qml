@@ -5,6 +5,8 @@ import QtQuick.Layouts 1.12
 Rectangle {
     id: root
 
+    property int currentIndex: 0
+
     TMoveArea {
         target: window
         anchors.fill: parent
@@ -135,8 +137,8 @@ Rectangle {
 
     Component.onCompleted:  {
         var len = columnLayout.children.length
-        if (len > 0)
-            columnLayout.children[0].checked = true
+        if (len > currentIndex)
+            columnLayout.children[currentIndex].checked = true
     }
 
     function setButtonChcked(btn) {
@@ -145,6 +147,8 @@ Rectangle {
         for (var i=0; i<len; i++) {
             if (columnLayout.children[i] !== btn)
                 columnLayout.children[i].checked = false
+            else
+                currentIndex = i
         }
     }
 }
