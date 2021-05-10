@@ -51,7 +51,7 @@ FramelessWindow {
                 anchors.left: top_left_header.right
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
-                anchors.right: btn_close.left
+                anchors.right: windowControl.left
 
                 Label {
                     anchors.left: parent.left
@@ -72,81 +72,12 @@ FramelessWindow {
                 anchors.rightMargin: 9
             }
 
-            TImageButton {
-                id: btn_top
-                anchors.top: parent.top
-                anchors.right: btn_min.left
-                width: 30
-                height: 30
-                imageWidth: 12
-                imageHeight: 12
-                padding: 0
-                leftInset: 0
-                rightInset: 0
-                topInset: 0
-                bottomInset: 0
-                hoveredColor: "#E5E5E5"
-                pressedColor: "#CDCDCD"
-                normalUrl: imgPath + "top.png"
-            }
-
-            TImageButton {
-                id: btn_min
-                anchors.top: parent.top
-                anchors.right: btn_max.left
-                width: 30
-                height: 30
-                imageWidth: 16
-                imageHeight: 16
-                padding: 0
-                leftInset: 0
-                rightInset: 0
-                topInset: 0
-                bottomInset: 0
-                hoveredColor: "#E5E5E5"
-                pressedColor: "#CDCDCD"
-                normalUrl: imgPath + "min.png"
-                onClicked: window.showMinimized()
-            }
-
-            TImageButton {
-                id: btn_max
-                anchors.top: parent.top
-                anchors.right: btn_close.left
-                width: 30
-                height: 30
-                imageWidth: 16
-                imageHeight: 16
-                padding: 0
-                leftInset: 0
-                rightInset: 0
-                topInset: 0
-                bottomInset: 0
-                hoveredColor: "#E5E5E5"
-                pressedColor: "#CDCDCD"
-                normalUrl: isMaximized() ? imgPath + "max_restore.png" : imgPath + "max.png"
-                onClicked: isMaximized() ? window.showNormal() : window.showMaximized()
-            }
-
-            TImageButton {
-                id: btn_close
+            WindowControl {
+                id: windowControl
                 anchors.top: parent.top
                 anchors.right: parent.right
-                width: 30
-                height: 30
-                imageWidth: 16
-                imageHeight: 16
-                padding: 0
-                leftInset: 0
-                rightInset: 0
-                topInset: 0
-                bottomInset: 0
-                hoveredColor: "#FA5151"
-                pressedColor: "#DC4848"
-                normalUrl: imgPath + "close.png"
-                hoveredUrl: imgPath + "close_hover.png"
-                pressedUrl: hoveredUrl
-                onClicked: window.close()
+
+                btnTop.onClicked: console.log("btnTop.onClicked")
             }
 
         }
