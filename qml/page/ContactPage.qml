@@ -70,14 +70,10 @@ Page {
             width: 250
             color: "#EBE8E7"
 
-            ListRecordModel {
-                id: listRecordModel
-            }
-
             ListView {
                 id: listView
                 anchors.fill: parent
-                model: listRecordModel
+                model: contactModel
                 clip: true
 
                 Component {
@@ -119,71 +115,21 @@ Page {
                             anchors.top: parent.top
                             anchors.bottom: parent.bottom
                             width: parent.height
-                            source: headPath + ico
+                            source: thumbnail
                          }
 
                         Label {
                             id: text_name
                             anchors.left: image_ico.right
                             anchors.top: parent.top
-                            anchors.right: text_date.left
-                            height:parent.height / 2
+                            anchors.bottom: parent.bottom
                             anchors.leftMargin: 6
                             anchors.rightMargin: 6
-                            verticalAlignment: Text.AlignBottom
-                            bottomPadding: 3
+                            verticalAlignment: Text.AlignVCenter
                             elide: Text.ElideRight
                             maximumLineCount:1
                             color: "#000000"
                             text: name
-                        }
-
-                        Label {
-                            id: text_desc
-                            anchors.top:text_name.bottom
-                            anchors.bottom: parent.bottom
-                            anchors.left: image_ico.right
-                            anchors.right: item_mute.left
-                            anchors.leftMargin: 6
-                            anchors.rightMargin: 6
-                            verticalAlignment: Text.AlignTop
-                            topPadding: 6
-                            font.pixelSize: 12
-                            color: "#999999"
-                            elide: Text.ElideRight
-                            maximumLineCount:1
-                            text: desc
-                        }
-
-                        Label {
-                            id: text_date
-                            anchors.right: parent.right
-                            anchors.top: parent.top
-                            height: parent.height / 2
-                            width: 40
-                            verticalAlignment: Text.AlignBottom
-                            horizontalAlignment: Text.AlignRight
-                            bottomPadding: 6
-                            font.pointSize: 9
-                            color: "#999999"
-                            text: Common.date2string(date)
-                        }
-
-                        Item {
-                            id: item_mute
-                            anchors.top: text_date.bottom
-                            anchors.right: parent.right
-                            anchors.bottom: parent.bottom
-                            width: height
-
-                            Image {
-                                id: i
-                                width: 16
-                                height: 16
-                                anchors.centerIn: parent
-                                visible: !remind
-                                source:  imgPath + "mute.png"
-                             }
                         }
                     }
 
@@ -196,32 +142,6 @@ Page {
                         onEntered: {if(!wrapper.ListView.isCurrentItem) wrapper.color = "#DCDBDA"; vScrollBar.visible=true;}
                         onExited: {if(!wrapper.ListView.isCurrentItem) wrapper.color = "transparent"; vScrollBar.visible=false;}
                     }
-
-                    states: [
-                        State {
-                            name: "NORMAL"
-                            PropertyChanges {
-                                target: wrapper
-                                color: "#EBE8E7"
-                            }
-                        },
-
-                        State {
-                            name: "HOVER"
-                            PropertyChanges {
-                                target: wrapper
-                                color: "#DCDBDA"
-                            }
-                        },
-
-                        State {
-                            name: "SELECTED"
-                            PropertyChanges {
-                                target: wrapper
-                                color: "#C4C5C6"
-                            }
-                        }
-                    ]
                 }
 
                 ScrollBar.vertical: ScrollBar {

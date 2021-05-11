@@ -22,13 +22,17 @@ HEADERS += \
     message/messagemodel.h \
     commondata.h \
     common/commondata.h \
-    message/messageinfo.h
+    message/messageinfo.h \
+    contact/contactinfo.h \
+    contact/contactmodel.h
 
 SOURCES += \
         main.cpp \
     QmlContext.cpp \
     message/messagemodel.cpp \
-    message/messageinfo.cpp
+    message/messageinfo.cpp \
+    contact/contactinfo.cpp \
+    contact/contactmodel.cpp
 
 DEFINES += headPath=\\\"file:///$$PWD/images/head/\\\"
 

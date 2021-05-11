@@ -5,6 +5,7 @@
 #include <QQuickStyle>
 #include "QmlContext.h"
 #include "message/messagemodel.h"
+#include "contact/contactmodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -19,6 +20,8 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("headPath", headPath);
 
     engine.rootContext()->setContextProperty("messageModel", new MessageModel());
+    engine.rootContext()->setContextProperty("contactModel", new ContactModel());
+
     //registerQmlProperty(properties, ctx, "localMusicModel", new LocalMusicModel());
 
 
