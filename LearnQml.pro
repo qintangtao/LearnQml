@@ -18,11 +18,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 HEADERS += \
-    QmlContext.h
+    QmlContext.h \
+    message/messagemodel.h \
+    commondata.h \
+    common/commondata.h \
+    message/messageinfo.h
 
 SOURCES += \
         main.cpp \
-    QmlContext.cpp
+    QmlContext.cpp \
+    message/messagemodel.cpp \
+    message/messageinfo.cpp
 
 DEFINES += headPath=\\\"file:///$$PWD/images/head/\\\"
 

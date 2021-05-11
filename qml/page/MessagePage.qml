@@ -77,7 +77,7 @@ Page {
             ListView {
                 id: listView
                 anchors.fill: parent
-                model: listRecordModel
+                model: messageModel
                 clip: true
 
                 Component {
@@ -119,7 +119,7 @@ Page {
                             anchors.top: parent.top
                             anchors.bottom: parent.bottom
                             width: parent.height
-                            source: headPath + ico
+                            source: thumbnail
                          }
 
                         Label {
@@ -153,6 +153,14 @@ Page {
                             elide: Text.ElideRight
                             maximumLineCount:1
                             text: desc
+
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: {
+                                    console.log("id is " + id)
+
+                                }
+                            }
                         }
 
                         Label {
@@ -192,7 +200,11 @@ Page {
                         id: ma
                         anchors.fill: parent
                         hoverEnabled: true
-                        onClicked: {listView.currentIndex = index; wrapper.color = "transparent"}
+                        onClicked: {listView.currentIndex = index; wrapper.color = "transparent";
+                            console.log("id is " + id)
+                            //messageModel.setName(id, name + ",add")
+                            messageModel.setDesc(id, desc + ",add")
+                        }
                         onEntered: {if(!wrapper.ListView.isCurrentItem) wrapper.color = "#DCDBDA"; vScrollBar.visible=true;}
                         onExited: {if(!wrapper.ListView.isCurrentItem) wrapper.color = "transparent"; vScrollBar.visible=false;}
                     }

@@ -4,6 +4,7 @@
 #include <QQmlContext>
 #include <QQuickStyle>
 #include "QmlContext.h"
+#include "message/messagemodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -16,6 +17,10 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("qmlPath", qmlPath);
     engine.rootContext()->setContextProperty("imgPath", imgPath);
     engine.rootContext()->setContextProperty("headPath", headPath);
+
+    engine.rootContext()->setContextProperty("messageModel", new MessageModel());
+    //registerQmlProperty(properties, ctx, "localMusicModel", new LocalMusicModel());
+
 
     engine.load(QUrl(qmlPath + QStringLiteral("main.qml")));
     if (engine.rootObjects().isEmpty())

@@ -250,6 +250,57 @@ Page {
                 }
             }
         }
+
+
+        Rectangle {
+            id: rectRight
+            anchors.left: leftContent.right
+            anchors.top: parent.top
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+
+
+            Canvas {
+                  id: mycanvas
+                  x: 100
+                  y: 100
+                  width: 200
+                  height: 300
+                  onPaint: {
+                      var ctx = getContext("2d");
+                      ctx.fillStyle = Qt.rgba(1, 0, 0, 1);
+                      //ctx.fillRect(0, 0, width, height);
+                      ctx.setLineDash([2])
+                      ctx.lineWidth = 4
+                      ctx.strokeStyle = '#f0f0f0'
+                      ctx.beginPath()
+                      ctx.moveTo(0, 0)
+                      ctx.lineTo(width, 0)
+                      ctx.lineTo(width, height)
+                      ctx.lineTo(0, height)
+                      ctx.lineTo(0, 0)
+                      ctx.stroke()
+                  }
+
+                  TMoveArea {
+                       anchors.fill: parent
+                  }
+
+                  TDragItem {
+                      posType: posRight
+                      x: parent.width - width
+                      width: 12
+                      height: parent.height
+                      y: 0
+                      onPosChange: {
+                          if (mycanvas.width + xOffset >= 30)
+                              mycanvas.width += xOffset;
+                      }
+                  }
+              }
+
+
+        }
     }
 }
 
