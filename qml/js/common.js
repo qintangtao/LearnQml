@@ -1,12 +1,15 @@
 
 
+function isNull(exp) {
+    if (!exp && typeof(exp) != "undefined" && exp != 0)
+        return true
+    return false
+}
 
 function isEmpty(obj){
-    if(typeof obj == "undefined" || obj == null || obj == ""){
+    if(typeof obj == "undefined" || obj == null || obj == "")
         return true;
-    }else{
-        return false;
-    }
+    return false;
 }
 
 function date2string(value) {

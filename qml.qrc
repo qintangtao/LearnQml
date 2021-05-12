@@ -30,5 +30,7 @@
         <file>qml/page/CollectPage.qml</file>
         <file>qml/page/FolderPage.qml</file>
         <file>qml/page/LookPage.qml</file>
+        <file>qml/page/look/look.js</file>
+        <file>qml/page/look/LookWindow.qml</file>
     </qresource>
 </RCC>

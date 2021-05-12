@@ -24,7 +24,9 @@ HEADERS += \
     common/commondata.h \
     message/messageinfo.h \
     contact/contactinfo.h \
-    contact/contactmodel.h
+    contact/contactmodel.h \
+    look/lookinfo.h \
+    look/look.h
 
 SOURCES += \
         main.cpp \
@@ -32,7 +34,9 @@ SOURCES += \
     message/messagemodel.cpp \
     message/messageinfo.cpp \
     contact/contactinfo.cpp \
-    contact/contactmodel.cpp
+    contact/contactmodel.cpp \
+    look/lookinfo.cpp \
+    look/look.cpp
 
 DEFINES += headPath=\\\"file:///$$PWD/images/head/\\\"
 

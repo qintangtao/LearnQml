@@ -5,10 +5,12 @@ Item {
     id: root
     //controller 要控制大小的目标，可以是Item，也可以是view，只要提供x、y、width、height等属性的修改
     //默认值为parent
+    anchors.fill: parent
+
     property var control: parent
 
-    property int minWidth: control.minimumWidth
-    property int minHeight: control.minimumHeight
+    property int minWidth: 0
+    property int minHeight: 0
     property int border: 8
 
     //左上角的拖拽

@@ -46,6 +46,7 @@ Page {
             anchors.fill: parent
             anchors.topMargin: 9
             anchors.rightMargin: 9
+            enabled: !(window.isMaximized() || window.isFullScreen())
         }
 
         WindowControl {
@@ -69,10 +70,6 @@ Page {
             anchors.bottom: parent.bottom
             width: 250
             color: "#EBE8E7"
-
-            ListRecordModel {
-                id: listRecordModel
-            }
 
             ListView {
                 id: listView
@@ -153,14 +150,6 @@ Page {
                             elide: Text.ElideRight
                             maximumLineCount:1
                             text: desc
-
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: {
-                                    console.log("id is " + id)
-
-                                }
-                            }
                         }
 
                         Label {

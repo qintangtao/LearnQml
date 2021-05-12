@@ -4,7 +4,9 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
 import QtGraphicalEffects 1.12
 
+import CppLookInfo 1.0
 import "../js/common.js" as Common
+import "./look/look.js" as JsLook
 import "."
 import "../"
 
@@ -259,9 +261,97 @@ Page {
             anchors.right: parent.right
             anchors.bottom: parent.bottom
 
+            property int childZ: 0
+
+            RowLayout {
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: parent.bottom
+
+                Rectangle {
+                    Layout.preferredWidth: 100
+                    Layout.preferredHeight: 50
+                    color: "#d6d6d6"
+                    TextInput {
+                        id: textInputId
+                        anchors.fill: parent
+                        font.pixelSize: 18
+                    }
+                }
+
+                Rectangle {
+                    Layout.preferredWidth: 100
+                    Layout.preferredHeight: 50
+                    color: "#d6d6d6"
+                    TextInput {
+                        id: textInputX
+                        anchors.fill: parent
+                        font.pixelSize: 18
+                    }
+                }
+
+                Button {
+                    text: "ok"
+                    Layout.preferredWidth: 80
+                    Layout.preferredHeight: 50
+                    onClicked: {
+                        lookMgr.setLookInfoX(textInputId.text, textInputX.text)
+                    }
+                }
+            }
+
+        }
+    }
+
+    Component.onCompleted:  {
+        lookMgr.load()
+    }
+
+    // C++ 信号监听
+    Connections {
+        target: lookMgr
+        onAdd: {
+            console.log("addLookWindow " + info.id)
+            JsLook.addLookWindow(rectRight, info)
+        }
+
+        onDel: {
+            console.log("delLookWindow " + id)
+            JsLook.delLookWindow(id)
+        }
+    }
+
+    /*
+    LookInfo {
+        id: cpp1
+        x: 100
+        y: 100
+        width: 300
+        height: 400
+    }
+
+    Component.onCompleted:  {
+        var lookinfos = []
+        var x = 100
+        var y = 100
+        var width = 100
+        var height = 100
+        for (var i = 0; i < 3; i++) {
+            var obj = JsLook.createLookInfo(rectRight, "text" + i,  x + i * width + 10, y + i * height + 10, width, height)
+            if (obj !== null)
+            {
+                obj.x = 200
+                lookinfos.push(obj)
+            }
+        }
+        console.log("cpp1.x " + cpp1.x)
+        console.log("cpp1.id " + cpp1.id)
+        JsLook.createLookInfo2(rectRight, cpp1)
+    }
 
             Canvas {
                   id: mycanvas
+                  enabled: false
+                  visible: enabled
                   x: 100
                   y: 100
                   width: 200
@@ -286,21 +376,16 @@ Page {
                        anchors.fill: parent
                   }
 
-                  TDragItem {
-                      posType: posRight
-                      x: parent.width - width
-                      width: 12
-                      height: parent.height
-                      y: 0
-                      onPosChange: {
-                          if (mycanvas.width + xOffset >= 30)
-                              mycanvas.width += xOffset;
-                      }
+                  TResizeBorder {
+                      id: resizeBorder
+                      anchors.fill: parent
+                      control: mycanvas
+                      minWidth: 100
+                      minHeight: 100
+                      visible: true
                   }
+
               }
-
-
-        }
-    }
+*/
 }
 

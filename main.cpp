@@ -6,6 +6,8 @@
 #include "QmlContext.h"
 #include "message/messagemodel.h"
 #include "contact/contactmodel.h"
+#include "look/lookinfo.h"
+#include "look/look.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,15 +17,19 @@ int main(int argc, char *argv[])
 
  #if 1
     QQmlApplicationEngine engine;
+
+    //注册示例
     engine.rootContext()->setContextProperty("qmlPath", qmlPath);
     engine.rootContext()->setContextProperty("imgPath", imgPath);
     engine.rootContext()->setContextProperty("headPath", headPath);
-
     engine.rootContext()->setContextProperty("messageModel", new MessageModel());
     engine.rootContext()->setContextProperty("contactModel", new ContactModel());
 
-    //registerQmlProperty(properties, ctx, "localMusicModel", new LocalMusicModel());
+    engine.rootContext()->setContextProperty("lookMgr", Look::instance());
 
+    //注册类型
+    //qmlRegisterType<CppObject>("MyCppObject",1,0,"CppObject");
+    qmlRegisterType<LookInfo>("CppLookInfo",1,0,"LookInfo");
 
     engine.load(QUrl(qmlPath + QStringLiteral("main.qml")));
     if (engine.rootObjects().isEmpty())

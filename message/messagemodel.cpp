@@ -2,7 +2,7 @@
 #include "messageinfo.h"
 #include <QDateTime>
 #include <QDebug>
-
+#include <QMetaType>
 #define USE_PRIVATE
 
 class MessageModelPrivate
@@ -103,7 +103,7 @@ MessageModel::MessageModel(QObject *parent) :
     m_dPtr(new MessageModelPrivate(this))
 {
    // qRegisterMetaType<QVector<MusicInfo>>("QVector<MusicInfo>");
-    //qRegisterMetaType<MessageInfo>("MessageInfo");
+  // qRegisterMetaType<MessageInfo>("MessageInfo");
 
     //connect(LocalMusic::getInstance(), SIGNAL(sigForUpdateLocalMusicData(QVector<MusicInfo>)),
   //  this, SLOT(slotForLocalMusic(QVector<MusicInfo>)));
@@ -215,6 +215,20 @@ void MessageModel::setData(const QList<MessageInfo *> &data)
     endResetModel();
 
     //qDebug()<<"slotForLocalMusic data size is : "<< data.size() ;
+}
+
+bool MessageModel::insertData(int row, MessageInfo *info)
+{
+    if( info == NULL)
+        return false;
+
+    if (row < 0 || row >= m_dPtr->m_datas.size())
+        return false;
+
+    beginInsertRows(QModelIndex(), row, row);
+    m_dPtr->m_datas.insert(row, info);
+    endInsertRows();
+    return true;
 }
 
 bool MessageModel::moveRow(const int& sourceRow, const int& desRow)

@@ -13,6 +13,7 @@ Rectangle {
         anchors.topMargin: 9
         anchors.leftMargin: 9
         anchors.bottomMargin: 9
+        enabled: !(window.isMaximized() || window.isFullScreen())
     }
 
     RoundImageButton {

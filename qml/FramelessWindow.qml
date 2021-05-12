@@ -49,6 +49,9 @@ Window {
         anchors.fill: parent
         anchors.margins: ds.enabled ?  resizeBorder.border : 0
         control: window
+        minWidth: window.minimumWidth
+        minHeight: window.minimumHeight
+        enabled: !(window.isMaximized() || window.isFullScreen())
         visible: true
     }
 
