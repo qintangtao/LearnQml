@@ -20,6 +20,7 @@ Item {
 
     TMoveArea {
          anchors.fill: parent
+         collision: true
 
          onPressed: {
             root.z = ++root.parent.childZ

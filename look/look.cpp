@@ -5,15 +5,22 @@
 Look *Look::m_pInstance = NULL;
 Look::Look(QObject *parent) : QObject(parent)
 {
-    for (int i = 0; i < 10; i++) {
-        LookInfo *info = new LookInfo(i);
-        info->setX(i * 100 + 50);
-        info->setY(i * 100 + 50);
-        info->setWidth(100);
-        info->setHeight(100);
-        info->setName(QStringLiteral("name%1").arg(i));
-        m_lstLookInfo.append(info);
+    int r = 4;
+    int c = 8;
+    int w = 192;
+    int h = 108;
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            LookInfo *info = new LookInfo(i * c + j);
+            info->setX(j * w);
+            info->setY(i * h);
+            info->setWidth(w);
+            info->setHeight(h);
+            info->setName(QString("%1").arg(i*c + j, 3, 10, QChar('0')));
+            m_lstLookInfo.append(info);
+        }
     }
+
 }
 
 Look *Look::instance()
