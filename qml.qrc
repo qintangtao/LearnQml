@@ -33,5 +33,6 @@
         <file>qml/page/look/look.js</file>
         <file>qml/page/look/LookWindow.qml</file>
         <file>qml/BasicComponent/Others/TBorder.qml</file>
+        <file>qml/BasicComponent/Others/TBorderV2.qml</file>
     </qresource>
 </RCC>

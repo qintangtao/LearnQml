@@ -39,7 +39,7 @@ Item {
         opacity: 0.5
 
 
-        TBorder {
+        TBorderV2 {
             anchors.fill: parent
             //borderTopWidth: 20
             //borderWidth: 2
@@ -49,7 +49,11 @@ Item {
             //borderBottomStyle: ShapePath.DashLine
             //borderBottomVisible: false
             //borderBottomColor: "#FF0000"
-            //borderBottomWidth: 12
+           // borderBottomWidth: 20
+            //borderBottomEnabled: true
+            borderTopEnabled: !rectHead.visible
+            //borderTopColor: "red"
+            //borderTopWidth: 30
         }
 
         /*
