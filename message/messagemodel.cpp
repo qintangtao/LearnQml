@@ -109,7 +109,11 @@ MessageModel::MessageModel(QObject *parent) :
   //  this, SLOT(slotForLocalMusic(QVector<MusicInfo>)));
 
     QList<MessageInfo *> list;
+#ifdef QT_DEBUG
     for (int i = 0; i < 10; i++) {
+#elif
+    for (int i = 0; i < 10; i++) {
+#endif
         MessageInfo *info  = new MessageInfo(i, this);
         info->setThumbnail(QString("%1%2.ico").arg(headPath).arg( (i % 5 ) + 1));
         info->setName(QStringLiteral("name_%1").arg(i+1));

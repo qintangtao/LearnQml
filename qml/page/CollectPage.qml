@@ -2,11 +2,12 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.5
 
+import "../"
 import "../js/common.js" as Common
 import "../BasicComponent/Others"
 import "../BasicComponent/Button"
 import "../BasicComponent/Mouse"
-import "../"
+import "../EffectComponent/Animation"
 
 Page {
     header: Rectangle {
@@ -250,6 +251,38 @@ Page {
                 }
             }
         }
+
+
+        ListModel{
+               id:model
+               //ListElement{url: imgPath + "flow/01.png"}
+               //ListElement{url: imgPath + "flow/02.png"}
+               //ListElement{url: imgPath + "flow/03.png"}
+               //ListElement{url: imgPath + "flow/04.png"}
+               //ListElement{url: imgPath + "flow/05.png"}
+
+               Component.onCompleted: {
+                   append({"url": imgPath + "flow/01.png"});
+                   append({"url": imgPath + "flow/02.png"});
+                   append({"url": imgPath + "flow/03.png"});
+                   append({"url": imgPath + "flow/04.png"});
+                   append({"url": imgPath + "flow/05.png"});
+                }
+           }
+
+
+
+        ACoverflow {
+                id:flow
+                anchors.left: leftContent.right
+                anchors.right: parent.right
+                height: parent.height
+                anchors.top: parent.top
+                model:model
+                itemWidth: 300
+                itemHeight: 300
+        }
+
     }
 }
 

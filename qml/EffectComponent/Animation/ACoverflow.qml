@@ -6,13 +6,21 @@ Rectangle {
     color:"black"
 
     property ListModel model
+
     property int itemCount: 5
     property int itemWidth: 200
     property int itemHeight: 200
 
     PathView{
         id:pathView
+
+        anchors.fill: parent
+        path:coverFlowPath
+        pathItemCount: coverflow.itemCount
+        preferredHighlightBegin: 0.5
+        preferredHighlightEnd: 0.5
         model:coverflow.model
+
         delegate: Rectangle {
             id:delegateItem
             width: coverflow.itemWidth
@@ -27,11 +35,12 @@ Rectangle {
                 height: parent.height
             }
 
+            //倒影
             ShaderEffect {
+                anchors.left: image.left
                 anchors.top: image.bottom
                 width: image.width
                 height: image.height;
-                anchors.left: image.left
                 property variant source: image;
                 property size sourceSize: Qt.size(0.5 / image.width, 0.5 / image.height);
                 fragmentShader: "
@@ -56,12 +65,6 @@ Rectangle {
                 angle: delegateItem.PathView.iconAngle
             }
         }
-        path:coverFlowPath
-        pathItemCount: coverflow.itemCount
-        anchors.fill: parent
-
-        preferredHighlightBegin: 0.5
-        preferredHighlightEnd: 0.5
 
     }
 
