@@ -38,6 +38,39 @@ void Look::setLookInfoX(int id, int x)
     info->setX(x);
 }
 
+void Look::setLookInfoY(int id, int y)
+{
+    LookInfo *info = getLookInfo(id);
+    if (info== NULL)
+        return;
+    info->setY(y);
+}
+void Look::setLookInfoWidth(int id, int width)
+{
+    LookInfo *info = getLookInfo(id);
+    if (info== NULL)
+        return;
+    info->setWidth(width);
+}
+void Look::setLookInfoHeight(int id, int height)
+{
+    LookInfo *info = getLookInfo(id);
+    if (info== NULL)
+        return;
+    info->setHeight(height);
+}
+
+void Look::setLookInfoRect(int id, int x, int y, int width, int height)
+{
+    LookInfo *info = getLookInfo(id);
+    if (info== NULL)
+        return;
+    info->setX(x);
+    info->setY(y);
+    info->setWidth(width);
+    info->setHeight(height);
+}
+
 void Look::load()
 {
     foreach (LookInfo *info, m_lstLookInfo){

@@ -29,6 +29,8 @@ Item {
          onPressed: {
              if (!hoverEnabled)
                 root.z = ++root.parent.childZ
+
+             root.parent.currentInfo = root.info
          }
     }
 

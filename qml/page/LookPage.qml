@@ -11,6 +11,7 @@ import "../BasicComponent/Others"
 import "../BasicComponent/Button"
 import "../BasicComponent/Mouse"
 import "../"
+import "look"
 
 Page {
     header: Rectangle {
@@ -254,6 +255,22 @@ Page {
             }
         }
 
+        Dialog {
+            id: dlgUpdate
+            implicitWidth: 160
+            implicitHeight: implicitWidth
+            anchors.centerIn: parent
+
+            property alias text: labelText.text
+
+            contentItem: Rectangle {
+                Label {
+                    id: labelText
+                    anchors.fill: parent
+                }
+            }
+        }
+
         Rectangle {
             id: rectRight
             anchors.left: leftContent.right
@@ -262,39 +279,233 @@ Page {
             anchors.bottom: parent.bottom
 
             property int childZ: 0
+            property LookInfo currentInfo
+
+            onCurrentInfoChanged: {
+                textInputId.text = currentInfo.id
+                textInputX.text = currentInfo.x
+                textInputY.text = currentInfo.y
+                textInputW.text = currentInfo.width
+                textInputH.text = currentInfo.height
+            }
+
+            Connections {
+                target: rectRight.currentInfo
+                onXChanged: textInputX.text = x
+                onYChanged: textInputY.text = y
+                onWidthChanged: textInputW.text = width
+                onHeightChanged: textInputH.text = height
+            }
 
             RowLayout {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.bottom: parent.bottom
+                anchors.bottomMargin: 6
 
                 Rectangle {
-                    Layout.preferredWidth: 100
-                    Layout.preferredHeight: 50
+                    Layout.preferredWidth: 60
+                    Layout.preferredHeight: 30
                     color: "#d6d6d6"
+
+                    Label {
+                        id: labelId
+                        anchors.left: parent.left
+                        height: parent.height
+                        verticalAlignment: Text.AlignVCenter
+                        text: qsTr("id: ")
+                    }
+
                     TextInput {
                         id: textInputId
-                        anchors.fill: parent
+                        anchors.left: labelId.right
+                        anchors.right: parent.right
+                        enabled: false
+                        height: parent.height
                         font.pixelSize: 18
+                        leftPadding: 3
+                        rightPadding: 3
+                        selectByMouse: true
+                        verticalAlignment: TextInput.AlignVCenter
+                        clip: true
+
+                        validator: IntValidator{
+                            bottom: 0; top: 35;
+                        }
                     }
                 }
 
                 Rectangle {
-                    Layout.preferredWidth: 100
-                    Layout.preferredHeight: 50
+                    Layout.preferredWidth: 60
+                    Layout.preferredHeight: 30
                     color: "#d6d6d6"
+
+                    Label {
+                        id: labelX
+                        anchors.left: parent.left
+                        height: parent.height
+                        verticalAlignment: Text.AlignVCenter
+                        text: qsTr("x: ")
+                    }
+
                     TextInput {
                         id: textInputX
-                        anchors.fill: parent
+                        anchors.left: labelX.right
+                        anchors.right: parent.right
+                        height: parent.height
                         font.pixelSize: 18
+                        leftPadding: 3
+                        rightPadding: 3
+                        selectByMouse: true
+                        verticalAlignment: TextInput.AlignVCenter
+                        clip: true
+
+                        validator: IntValidator{
+                            bottom: 0; top: rectRight.width;
+                        }
+                    }
+                }
+
+                Rectangle {
+                    Layout.preferredWidth: 60
+                    Layout.preferredHeight: 30
+                    color: "#d6d6d6"
+
+                    Label {
+                        id: labelY
+                        anchors.left: parent.left
+                        height: parent.height
+                        verticalAlignment: Text.AlignVCenter
+                        text: qsTr("y: ")
+                    }
+
+                    TextInput {
+                        id: textInputY
+                        anchors.left: labelY.right
+                        anchors.right: parent.right
+                        height: parent.height
+                        font.pixelSize: 18
+                        leftPadding: 3
+                        rightPadding: 3
+                        selectByMouse: true
+                        verticalAlignment: TextInput.AlignVCenter
+                        clip: true
+
+                        validator: IntValidator{
+                            bottom: 0; top: rectRight.height;
+                        }
+                    }
+                }
+
+                Rectangle {
+                    Layout.preferredWidth: 60
+                    Layout.preferredHeight: 30
+                    color: "#d6d6d6"
+
+                    Label {
+                        id: labelW
+                        anchors.left: parent.left
+                        height: parent.height
+                        verticalAlignment: Text.AlignVCenter
+                        text: qsTr("w: ")
+                    }
+
+                    TextInput {
+                        id: textInputW
+                        anchors.left: labelW.right
+                        anchors.right: parent.right
+                        height: parent.height
+                        font.pixelSize: 18
+                        leftPadding: 3
+                        rightPadding: 3
+                        selectByMouse: true
+                        verticalAlignment: TextInput.AlignVCenter
+                        clip: true
+
+                        validator: IntValidator{
+                            bottom: 0; top: rectRight.width;
+                        }
+                    }
+                }
+
+                Rectangle {
+                    Layout.preferredWidth: 60
+                    Layout.preferredHeight: 30
+                    color: "#d6d6d6"
+
+                    Label {
+                        id: labelH
+                        anchors.left: parent.left
+                        height: parent.height
+                        verticalAlignment: Text.AlignVCenter
+                        text: qsTr("h: ")
+                    }
+
+                    TextInput {
+                        id: textInputH
+                        anchors.left: labelH.right
+                        anchors.right: parent.right
+                        height: parent.height
+                        font.pixelSize: 18
+                        leftPadding: 3
+                        rightPadding: 3
+                        selectByMouse: true
+                        verticalAlignment: TextInput.AlignVCenter
+                        clip: true
+
+                        validator: IntValidator{
+                            bottom: 0; top: rectRight.height;
+                        }
                     }
                 }
 
                 Button {
                     text: "ok"
                     Layout.preferredWidth: 80
-                    Layout.preferredHeight: 50
+                    Layout.preferredHeight: 30
+                    padding: 0
+                    topInset: 0
+                    bottomInset: 0
                     onClicked: {
-                        lookMgr.setLookInfoX(textInputId.text, textInputX.text)
+                        //lookMgr.setLookInfoX(textInputId.text, textInputX.text)
+                        //lookMgr.setLookInfoY(textInputId.text, textInputY.text)
+
+                        if(!textInputId.acceptableInput)
+                        {
+                            dlgUpdate.title = qsTr("warn")
+                            dlgUpdate.text = qsTr("invalid id ") + textInputId.text
+                            dlgUpdate.open()
+                            return
+                        }
+                        if(!textInputX.acceptableInput)
+                        {
+                            dlgUpdate.title = qsTr("warn")
+                            dlgUpdate.text = qsTr("invalid x ") + textInputX.text
+                            dlgUpdate.open()
+                            return
+                        }
+                        if(!textInputY.acceptableInput)
+                        {
+                            dlgUpdate.title = qsTr("warn")
+                            dlgUpdate.text = qsTr("invalid y ") + textInputY.text
+                            dlgUpdate.open()
+                            return
+                        }
+                        if(!textInputW.acceptableInput)
+                        {
+                            dlgUpdate.title = qsTr("warn")
+                            dlgUpdate.text = qsTr("invalid w ") + textInputW.text
+                            dlgUpdate.open()
+                            return
+                        }
+                        if(!textInputH.acceptableInput)
+                        {
+                            dlgUpdate.title = qsTr("warn")
+                            dlgUpdate.text = qsTr("invalid h ") + textInputH.text
+                            dlgUpdate.open()
+                            return
+                        }
+
+                        lookMgr.setLookInfoRect(textInputId.text, textInputX.text, textInputY.text, textInputW.text, textInputH.text);
                     }
                 }
             }

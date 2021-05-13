@@ -1,6 +1,10 @@
 
 var lookwins = []
 
+function length() {
+    return lookwins.length
+}
+
 function addLookWindow(parent, info) {
     var obj = createLookWindow(parent, info)
     if (isNull(obj))
