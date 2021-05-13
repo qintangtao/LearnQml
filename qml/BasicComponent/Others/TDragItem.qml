@@ -44,7 +44,6 @@ Item {
         property int lastY: 0
 
         onContainsMouseChanged: {
-            console.log("onContainsMouseChanged " + pressed)
             if(!pressed)
                 cursorShape = containsMouse ? posType : Qt.ArrowCursor
         }

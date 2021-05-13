@@ -22,6 +22,12 @@ Button {
 
     property alias cursorShape: area.cursorShape
 
+
+    padding: 0
+    leftInset: 0
+    rightInset: 0
+    topInset: 0
+    bottomInset: 0
     hoverEnabled: true
     //icon.source: enabled ?  (pressed && !checked ?  pressedUrl : (hovered && !checked ? hoveredUrl : (checked ? checkedUrl :  normalUrl))) : disabledUrl
     icon.source: enabled ?  (pressed && !checked ?  (isEmpty(pressedUrl) ? normalUrl : pressedUrl) : (hovered && !checked ? (isEmpty(hoveredUrl ) ? normalUrl : hoveredUrl) : (checked ? checkedUrl :  normalUrl))) : (isEmpty(disabledUrl) ? normalUrl : disabledUrl)

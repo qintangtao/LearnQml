@@ -5,9 +5,10 @@ import QtQuick.Layouts 1.12
 import QtQuick.Shapes 1.12
 
 import CppLookInfo 1.0
-import "../../"
 import "../../js/common.js" as Common
 import "../../BasicComponent/Others"
+import "../../BasicComponent/Button"
+import "../../BasicComponent/Mouse"
 
 Item {
     id: root
@@ -19,15 +20,16 @@ Item {
 
     property alias text: labelName.text
     property LookInfo info
+    property bool hoverEnabled: false
 
     TMoveArea {
          anchors.fill: parent
          collision: true
 
-         /*
          onPressed: {
-            root.z = ++root.parent.childZ
-         }*/
+             if (!hoverEnabled)
+                root.z = ++root.parent.childZ
+         }
     }
 
     Rectangle {
@@ -38,53 +40,9 @@ Item {
         color: "#e0e0e0"
         opacity: 0.5
 
-
         TBorderV2 {
-            anchors.fill: parent
-            //borderTopWidth: 20
-            //borderWidth: 2
-            //borderRightWidth: 10
-            //borderColor: "red"
-            //borderBottomColor: "#FF00FF"
-            //borderBottomStyle: ShapePath.DashLine
-            //borderBottomVisible: false
-            //borderBottomColor: "#FF0000"
-           // borderBottomWidth: 20
-            //borderBottomEnabled: true
             borderTopEnabled: !rectHead.visible
-            //borderTopColor: "red"
-            //borderTopWidth: 30
         }
-
-        /*
-        Shape {
-            anchors.fill: parent
-            ShapePath {
-                strokeWidth: 1
-                strokeColor: "#c6c6c6"
-                strokeStyle: ShapePath.SolidLine
-                startX: 1
-                startY: 0
-                PathLine {
-                    x: 1
-                    y: rectContent.height
-                }
-                PathLine {
-                    x: rectContent.width
-                    y: rectContent.height
-                }
-                PathLine {
-                    x: rectContent.width
-                    y: 0
-                }
-                PathLine {
-                    x: 1
-                    y: 0
-                }
-            }
-        }
-        */
-
     }
 
     Rectangle {
@@ -92,8 +50,9 @@ Item {
         width: parent.width
         height: 30
         color: "#c6c6c6"
-        y: area.enabled ? -height : 0
-        visible: !area.enabled
+        y: hoverEnabled ? -height : 0
+        visible: !hoverEnabled
+        //z: 2
 
         Label {
            id: labelName
@@ -110,11 +69,6 @@ Item {
             width: height
             imageWidth: 16
             imageHeight: 16
-            padding: 0
-            leftInset: 0
-            rightInset: 0
-            topInset: 0
-            bottomInset: 0
             hoveredColor: "#FA5151"
             pressedColor: "#DC4848"
             normalUrl: imgPath + "close.png"
@@ -133,11 +87,13 @@ Item {
     TTransArea {
         id: area
         anchors.fill: parent
-        enabled: true
+        enabled: false
         visible: enabled
-        onEntered: showHead()
+        hoverEnabled: root.hoverEnabled
+        onEntered: showHead();
         onExited: hideHead()
         onPressed: root.z = ++root.parent.childZ
+        onPositionChanged: console.log("onPositionChanged mouseX " + mouseX + ", mouseY " + mouseY)
     }
 
     Timer {
@@ -166,6 +122,9 @@ Item {
         onFinished: {
             if (target.y === -target.height)
                 target.visible = false
+
+           // if (target.visible)
+           //     area.hoverEnabled = false
         }
     }
 

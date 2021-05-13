@@ -2,12 +2,14 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
-import QtGraphicalEffects 1.12
 
 import CppLookInfo 1.0
+
 import "../js/common.js" as Common
 import "./look/look.js" as JsLook
-import "."
+import "../BasicComponent/Others"
+import "../BasicComponent/Button"
+import "../BasicComponent/Mouse"
 import "../"
 
 Page {
@@ -54,7 +56,6 @@ Page {
             id: windowControl
             anchors.top: parent.top
             anchors.right: parent.right
-
             btnTop.onClicked: console.log("btnTop.onClicked")
         }
 
@@ -253,7 +254,6 @@ Page {
             }
         }
 
-
         Rectangle {
             id: rectRight
             anchors.left: leftContent.right
@@ -310,82 +310,14 @@ Page {
     Connections {
         target: lookMgr
         onAdd: {
-            console.log("addLookWindow " + info.id)
+            //console.log("addLookWindow " + info.id)
             JsLook.addLookWindow(rectRight, info)
         }
 
         onDel: {
-            console.log("delLookWindow " + id)
+            //console.log("delLookWindow " + id)
             JsLook.delLookWindow(id)
         }
     }
-
-    /*
-    LookInfo {
-        id: cpp1
-        x: 100
-        y: 100
-        width: 300
-        height: 400
-    }
-
-    Component.onCompleted:  {
-        var lookinfos = []
-        var x = 100
-        var y = 100
-        var width = 100
-        var height = 100
-        for (var i = 0; i < 3; i++) {
-            var obj = JsLook.createLookInfo(rectRight, "text" + i,  x + i * width + 10, y + i * height + 10, width, height)
-            if (obj !== null)
-            {
-                obj.x = 200
-                lookinfos.push(obj)
-            }
-        }
-        console.log("cpp1.x " + cpp1.x)
-        console.log("cpp1.id " + cpp1.id)
-        JsLook.createLookInfo2(rectRight, cpp1)
-    }
-
-            Canvas {
-                  id: mycanvas
-                  enabled: false
-                  visible: enabled
-                  x: 100
-                  y: 100
-                  width: 200
-                  height: 300
-                  onPaint: {
-                      var ctx = getContext("2d");
-                      ctx.fillStyle = Qt.rgba(1, 0, 0, 1);
-                      //ctx.fillRect(0, 0, width, height);
-                      ctx.setLineDash([2])
-                      ctx.lineWidth = 4
-                      ctx.strokeStyle = '#f0f0f0'
-                      ctx.beginPath()
-                      ctx.moveTo(0, 0)
-                      ctx.lineTo(width, 0)
-                      ctx.lineTo(width, height)
-                      ctx.lineTo(0, height)
-                      ctx.lineTo(0, 0)
-                      ctx.stroke()
-                  }
-
-                  TMoveArea {
-                       anchors.fill: parent
-                  }
-
-                  TResizeBorder {
-                      id: resizeBorder
-                      anchors.fill: parent
-                      control: mycanvas
-                      minWidth: 100
-                      minHeight: 100
-                      visible: true
-                  }
-
-              }
-*/
 }
 

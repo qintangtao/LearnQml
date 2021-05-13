@@ -4,6 +4,7 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
 import QtGraphicalEffects 1.12
 
+import "BasicComponent/Others"
 import "."
 import "page"
 

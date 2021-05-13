@@ -32,8 +32,6 @@ Item {
     property alias borderBottomStyle: shapePathBottom.strokeStyle
     property alias borderLeftStyle: shapePathLeft.strokeStyle
 
-
-
     Shape {
         id: shapeTop
         anchors.fill: parent
@@ -72,7 +70,6 @@ Item {
         }
     }
 
-
     Shape {
         id: shapeBootom
         anchors.fill: parent
@@ -92,8 +89,6 @@ Item {
         }
     }
 
-
-
     Shape {
         id: shapeLeft
         anchors.fill: parent
@@ -112,5 +107,35 @@ Item {
             }
         }
     }
+
+
+    /*
+    Shape {
+        anchors.fill: parent
+        ShapePath {
+            strokeWidth: 1
+            strokeColor: "#c6c6c6"
+            strokeStyle: ShapePath.SolidLine
+            startX: 1
+            startY: 0
+            PathLine {
+                x: 1
+                y: rectContent.height
+            }
+            PathLine {
+                x: rectContent.width
+                y: rectContent.height
+            }
+            PathLine {
+                x: rectContent.width
+                y: 0
+            }
+            PathLine {
+                x: 1
+                y: 0
+            }
+        }
+    }
+    */
 }
 

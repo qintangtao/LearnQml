@@ -1,28 +1,12 @@
 <RCC>
     <qresource prefix="/">
         <file>qml/main.qml</file>
-        <file>qml/AGrad.qml</file>
-        <file>qml/Coverflow.qml</file>
-        <file>qml/ACleavage.qml</file>
-        <file>qml/ADiagonal.qml</file>
-        <file>qml/ACircle.qml</file>
-        <file>qml/AWheel.qml</file>
         <file>qml/test.qml</file>
-        <file>qml/TMoveArea.qml</file>
-        <file>qml/FramelessWindow.qml</file>
-        <file>qml/TFlatButton.qml</file>
-        <file>qml/TResizeArea.qml</file>
         <file>qml/ListRecordModel.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>qml/Global.qml</file>
         <file>qml/qmldir</file>
-        <file>qml/ImageButton.qml</file>
         <file>qml/js/common.js</file>
-        <file>qml/TImageButton.qml</file>
-        <file>qml/RoundImageButton.qml</file>
-        <file>qml/TTransArea.qml</file>
-        <file>qml/TDragItem.qml</file>
-        <file>qml/TResizeBorder.qml</file>
         <file>qml/MainBar.qml</file>
         <file>qml/WindowControl.qml</file>
         <file>qml/page/MessagePage.qml</file>
@@ -34,5 +18,22 @@
         <file>qml/page/look/LookWindow.qml</file>
         <file>qml/BasicComponent/Others/TBorder.qml</file>
         <file>qml/BasicComponent/Others/TBorderV2.qml</file>
+        <file>qml/BasicComponent/Others/TDragItem.qml</file>
+        <file>qml/BasicComponent/Others/TResizeArea.qml</file>
+        <file>qml/BasicComponent/Others/TResizeBorder.qml</file>
+        <file>qml/BasicComponent/Button/ImageButton.qml</file>
+        <file>qml/BasicComponent/Button/TImageButton.qml</file>
+        <file>qml/BasicComponent/Button/RoundImageButton.qml</file>
+        <file>qml/BasicComponent/Mouse/TMoveArea.qml</file>
+        <file>qml/BasicComponent/Mouse/TTransArea.qml</file>
+        <file>qml/BasicComponent/Others/TDropShadow.qml</file>
+        <file>qml/BasicComponent/Button/TFlatButton.qml</file>
+        <file>qml/EffectComponent/Animation/ACircle.qml</file>
+        <file>qml/EffectComponent/Animation/ACleavage.qml</file>
+        <file>qml/EffectComponent/Animation/ACoverflow.qml</file>
+        <file>qml/EffectComponent/Animation/ADiagonal.qml</file>
+        <file>qml/EffectComponent/Animation/AGrad.qml</file>
+        <file>qml/EffectComponent/Animation/AWheel.qml</file>
+        <file>qml/BasicComponent/Others/FramelessWindow.qml</file>
     </qresource>
 </RCC>
