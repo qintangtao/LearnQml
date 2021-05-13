@@ -7,6 +7,7 @@ import QtQuick.Shapes 1.12
 import CppLookInfo 1.0
 import "../../"
 import "../../js/common.js" as Common
+import "../../BasicComponent/Others"
 
 Item {
     id: root
@@ -14,6 +15,7 @@ Item {
     y: 100
     width: 200
     height: 300
+    clip: true
 
     property alias text: labelName.text
     property LookInfo info
@@ -22,58 +24,35 @@ Item {
          anchors.fill: parent
          collision: true
 
+         /*
          onPressed: {
             root.z = ++root.parent.childZ
-         }
-    }
-
-    Rectangle {
-        id: rectHead
-        width: parent.width
-        height: 30
-        color: "#c6c6c6"
-
-        Label {
-           id: labelName
-           height: parent.height
-           anchors.left: parent.left
-           anchors.leftMargin: 6
-           verticalAlignment: Text.AlignVCenter
-        }
-
-
-        TImageButton {
-            id: btn_close
-            anchors.right: parent.right
-            height: parent.height
-            width: height
-            imageWidth: 16
-            imageHeight: 16
-            padding: 0
-            leftInset: 0
-            rightInset: 0
-            topInset: 0
-            bottomInset: 0
-            hoveredColor: "#FA5151"
-            pressedColor: "#DC4848"
-            normalUrl: imgPath + "close.png"
-            hoveredUrl: imgPath + "close_hover.png"
-            pressedUrl: hoveredUrl
-            onClicked: {
-                console.log("close " + info.id)
-                Common.isNull(info) ? root.destroy() :  lookMgr.closeWindow(info.id)
-            }
-        }
+         }*/
     }
 
     Rectangle {
         id: rectContent
         width: parent.width
-        anchors.top: rectHead.bottom
+        anchors.top: parent.top
         anchors.bottom: parent.bottom
         color: "#e0e0e0"
         opacity: 0.5
 
+
+        TBorder {
+            anchors.fill: parent
+            //borderTopWidth: 20
+            //borderWidth: 2
+            //borderRightWidth: 10
+            //borderColor: "red"
+            //borderBottomColor: "#FF00FF"
+            //borderBottomStyle: ShapePath.DashLine
+            //borderBottomVisible: false
+            //borderBottomColor: "#FF0000"
+            //borderBottomWidth: 12
+        }
+
+        /*
         Shape {
             anchors.fill: parent
             ShapePath {
@@ -94,7 +73,50 @@ Item {
                     x: rectContent.width
                     y: 0
                 }
+                PathLine {
+                    x: 1
+                    y: 0
+                }
             }
+        }
+        */
+
+    }
+
+    Rectangle {
+        id: rectHead
+        width: parent.width
+        height: 30
+        color: "#c6c6c6"
+        y: area.enabled ? -height : 0
+        visible: !area.enabled
+
+        Label {
+           id: labelName
+           height: parent.height
+           anchors.left: parent.left
+           anchors.leftMargin: 6
+           verticalAlignment: Text.AlignVCenter
+        }
+
+        TImageButton {
+            id: btn_close
+            anchors.right: parent.right
+            height: parent.height
+            width: height
+            imageWidth: 16
+            imageHeight: 16
+            padding: 0
+            leftInset: 0
+            rightInset: 0
+            topInset: 0
+            bottomInset: 0
+            hoveredColor: "#FA5151"
+            pressedColor: "#DC4848"
+            normalUrl: imgPath + "close.png"
+            hoveredUrl: imgPath + "close_hover.png"
+            pressedUrl: hoveredUrl
+            onClicked:  Common.isNull(info) ? root.destroy() :  lookMgr.closeWindow(info.id)
         }
     }
 
@@ -103,6 +125,64 @@ Item {
         minWidth: 100
         minHeight: 100
     }
+
+    TTransArea {
+        id: area
+        anchors.fill: parent
+        enabled: true
+        visible: enabled
+        onEntered: showHead()
+        onExited: hideHead()
+        onPressed: root.z = ++root.parent.childZ
+    }
+
+    Timer {
+          interval: 2000;
+          running: false;
+          repeat: true
+          onTriggered: {
+              //console.log("containsMouse is " + area.containsMouse)
+             console.log("Timer id " + info.id + ", mouseX " + area.mouseX + ", mouseY " + area.mouseY)
+              if(area.mouseX == 0 && area.mouseY)
+                  hideHead()
+          }
+      }
+
+    PropertyAnimation {
+        id: animation
+        target: rectHead
+        properties: "y"
+        duration: 300
+        easing.type: Easing.Linear
+        onStarted: {
+            if (target.y === -target.height)
+                target.visible = true
+        }
+
+        onFinished: {
+            if (target.y === -target.height)
+                target.visible = false
+        }
+    }
+
+    function showHead() {
+        if (animation.running)
+            animation.running = false
+
+        animation.from = rectHead.y == -rectHead.height ? -rectHead.height : rectHead.y
+        animation.to = 0
+        animation.running = true
+    }
+
+    function hideHead() {
+        if (animation.running)
+            animation.running = false
+
+        animation.from = rectHead.y == 0 ? 0 : rectHead.y
+        animation.to = -rectHead.height
+        animation.running = true
+    }
+
 
     onInfoChanged: {
         if(Common.isNull(info))
@@ -122,24 +202,11 @@ Item {
 
     Connections {
         target: info
-        onXChanged: {
-            root.x = x
-            console.log("info.id " + info.id + ", info.x " + info.x)
-        }
-        onYChanged: {
-            root.y = y
-            console.log("info.id " + info.id + ", info.y " + info.y)
-        }
-        onWidthChanged: {
-            root.width = width
-            console.log("info.id " + info.id + ", info.width " + info.width)
-        }
-        onHeightChanged: {
-            root.height = height
-            console.log("info.id " + info.id + ", info.height " + info.height)
-        }
+        onXChanged: root.x = x
+        onYChanged: root.y = y
+        onWidthChanged: root.width = width
+        onHeightChanged: root.height = height
     }
-
 
     /*
     Canvas {

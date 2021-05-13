@@ -7,6 +7,7 @@ MouseArea {
 
     anchors.fill: parent
     hoverEnabled: true
+    propagateComposedEvents: true
     onDoubleClicked: mouse.accepted = accepted
     onPositionChanged: mouse.accepted = accepted
     onPressed:  mouse.accepted = accepted
