@@ -53,9 +53,8 @@ Rectangle {
                             lowp vec4 col = 0.25 * (texture2D(source, tc + sourceSize) + texture2D(source, tc- sourceSize)
                             + texture2D(source, tc + sourceSize * vec2(1, -1))
                             + texture2D(source, tc + sourceSize * vec2(-1, 1)));
-                            gl_FragColor = col * qt_Opacity * (1.0 - qt_TexCoord0.y) * 0.2;
-                        }
-"
+                            gl_FragColor = col * qt_Opacity * (1.0 - qt_TexCoord0.y) * 0.4;
+                        } "
             }
 
             transform: Rotation{

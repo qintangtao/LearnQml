@@ -262,15 +262,21 @@ Page {
                //ListElement{url: imgPath + "flow/05.png"}
 
                Component.onCompleted: {
+                   /*
                    append({"url": imgPath + "flow/01.png"});
                    append({"url": imgPath + "flow/02.png"});
                    append({"url": imgPath + "flow/03.png"});
                    append({"url": imgPath + "flow/04.png"});
                    append({"url": imgPath + "flow/05.png"});
+                   */
+
+                   append({"url": imgPath + "flow/01.jpg"});
+                   append({"url": imgPath + "flow/02.jpg"});
+                   append({"url": imgPath + "flow/03.jpg"});
+                   append({"url": imgPath + "flow/04.jpg"});
+                   append({"url": imgPath + "flow/05.jpg"});
                 }
            }
-
-
 
         ACoverflow {
                 id:flow
@@ -280,7 +286,8 @@ Page {
                 anchors.top: parent.top
                 model:model
                 itemWidth: 300
-                itemHeight: 300
+                itemHeight: 168
+                clip: true
         }
 
     }
