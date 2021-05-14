@@ -22,6 +22,7 @@ Item {
     property LookInfo info
     property bool hoverEnabled: false
 
+    /*
     TMoveArea {
          anchors.fill: parent
          collision: true
@@ -32,6 +33,22 @@ Item {
 
              root.parent.currentInfo = root.info
          }
+    }*/
+
+    TMoveAreaV2 {
+        anchors.fill: parent
+        collisionEnabled: true
+        collisionBottom: root.parent.height - 42
+
+        onTargetXChanged: info.setX(x)
+        onTargetYChanged: info.setY(y)
+
+        onPressed: {
+            if (!hoverEnabled)
+               root.z = ++root.parent.childZ
+
+            root.parent.currentInfo = root.info
+        }
     }
 
     Rectangle {
@@ -76,14 +93,27 @@ Item {
             normalUrl: imgPath + "close.png"
             hoveredUrl: imgPath + "close_hover.png"
             pressedUrl: hoveredUrl
-            onClicked:  Common.isNull(info) ? root.destroy() :  lookMgr.closeWindow(info.id)
+            onClicked:  info ? root.destroy() :  lookMgr.closeWindow(info.id)
         }
     }
 
+ /*
     TResizeBorder {
         id: resizeBorder
         minWidth: 100
         minHeight: 100
+    }*/
+
+    TResizeBorderV2 {
+        id: resizeBorder
+        minWidth: 100
+        minHeight: 100
+        collisionEnabled: true
+
+        onTargetXChanged: if(info) info.setX(x);
+        onTargetYChanged: if(info) info.setY(y);
+        onTargetWidthChanged: if(info) info.setWidth(width);
+        onTargetHeightChanged: if(info) info.setHeight(height);
     }
 
     TTransArea {
@@ -124,9 +154,6 @@ Item {
         onFinished: {
             if (target.y === -target.height)
                 target.visible = false
-
-           // if (target.visible)
-           //     area.hoverEnabled = false
         }
     }
 
@@ -148,11 +175,10 @@ Item {
         animation.running = true
     }
 
-
     onInfoChanged: {
         if(Common.isNull(info))
             return
-        console.log("onInfoChanged id " + info.id)
+        //console.log("onInfoChanged id " + info.id)
         root.text = info.name
         root.x = info.x
         root.y = info.y
@@ -160,10 +186,12 @@ Item {
         root.height = info.height
     }
 
+    /*
     onXChanged: if (!Common.isNull(info)) info.setX(x)
     onYChanged: if (!Common.isNull(info)) info.setY(y)
     onWidthChanged:  if (!Common.isNull(info)) info.setWidth(width)
     onHeightChanged:  if (!Common.isNull(info)) info.setHeight(height)
+*/
 
     Connections {
         target: info

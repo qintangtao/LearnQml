@@ -35,7 +35,7 @@ function getLookWindow(id) {
 
 function createLookWindow(parent, info) {
     var component = Qt.createComponent("LookWindow.qml")
-    console.log("errorString " + component.errorString())
+    //console.log("errorString " + component.errorString())
     if (component.status === Component.Ready) {
         var obj = component.createObject(parent, {"info": info})
         return obj

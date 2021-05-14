@@ -281,6 +281,13 @@ Page {
             property int childZ: 0
             property LookInfo currentInfo
 
+            Component.onCompleted: {
+                if (rectRight.currentInfo)
+                    console.log("currentInfo true")
+                else
+                    console.log("currentInfo false " + currentInfo)
+            }
+
             onCurrentInfoChanged: {
                 textInputId.text = currentInfo.id
                 textInputX.text = currentInfo.x

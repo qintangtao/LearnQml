@@ -70,14 +70,14 @@ Rectangle {
 
     Path{
         id:coverFlowPath
+
         startX: 0
         startY: coverflow.height/3
-
         PathAttribute{name:"iconZ";value: 0}
         PathAttribute{name:"iconAngle";value: 70}
         PathAttribute{name:"iconScale";value: 0.6}
-        PathLine{x:coverflow.width/2;y:coverflow.height/3}
 
+        PathLine{x:coverflow.width/2;y:coverflow.height/3}
         PathAttribute{name:"iconZ";value: 100}
         PathAttribute{name:"iconAngle";value: 0}
         PathAttribute{name:"iconScale";value: 1.0}
@@ -86,6 +86,7 @@ Rectangle {
         PathAttribute{name:"iconZ";value: 0}
         PathAttribute{name:"iconAngle";value: -70}
         PathAttribute{name:"iconScale";value: 0.6}
+
         PathPercent{value:1.0}
     }
 }

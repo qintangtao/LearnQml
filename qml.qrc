@@ -35,5 +35,7 @@
         <file>qml/EffectComponent/Animation/AGrad.qml</file>
         <file>qml/EffectComponent/Animation/AWheel.qml</file>
         <file>qml/BasicComponent/Others/FramelessWindow.qml</file>
+        <file>qml/BasicComponent/Others/TResizeBorderV2.qml</file>
+        <file>qml/BasicComponent/Mouse/TMoveAreaV2.qml</file>
     </qresource>
 </RCC>

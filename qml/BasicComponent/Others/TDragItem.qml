@@ -30,11 +30,10 @@ Item {
     property alias containsMouse: area.containsMouse
     //property alias containsPress: area.containsPress
 
-    signal posChange(int xOffset, int yOffset)
+    signal posChanged(int xOffset, int yOffset)
 
     implicitWidth: 12
     implicitHeight: 12
-
 
     MouseArea {
         id: area
@@ -57,7 +56,7 @@ Item {
 
         onPositionChanged: {
             if (pressed) {
-                parent.posChange(mouseX-lastX, mouseY - lastY)
+                parent.posChanged(mouseX-lastX, mouseY - lastY)
             }
         }
     }

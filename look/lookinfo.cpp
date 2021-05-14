@@ -15,9 +15,7 @@ LookInfo::LookInfo(int id, QObject *parent)
 
 LookInfo::~LookInfo()
 {
- 
 }
-
 
 void LookInfo::setName(QString name)
 {
@@ -32,7 +30,7 @@ void LookInfo::setX(int x)
 {
     if (m_x == x)
         return;
-    qDebug() << "old.x" << m_x << "new.x" << x;
+    //qDebug() << "old.x" << m_x << "new.x" << x;
     m_x = x;
     emit xChanged(m_x);
 }
@@ -41,7 +39,7 @@ void LookInfo::setY(int y)
 {
     if (m_y == y)
         return;
-    qDebug() << "old.y" << m_y << "new.y" << y;
+    //qDebug() << "old.y" << m_y << "new.y" << y;
     m_y = y;
     emit yChanged(m_y);
 }
@@ -50,7 +48,7 @@ void LookInfo::setWidth(int width)
 {
     if (m_width == width)
         return;
-    qDebug() << "old.width" << m_width << "new.width" << width;
+    //qDebug() << "old.width" << m_width << "new.width" << width;
     m_width = width;
     emit widthChanged(m_width);
 }
@@ -59,7 +57,7 @@ void LookInfo::setHeight(int height)
 {
     if (m_height == height)
         return;
-    qDebug() << "old.height" << m_height << "new.height" << height;
+    //qDebug() << "old.height" << m_height << "new.height" << height;
     m_height = height;
     emit heightChanged(m_height);
 }

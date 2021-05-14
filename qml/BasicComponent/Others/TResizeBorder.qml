@@ -3,11 +3,11 @@ import QtQuick.Controls 2.5
 
 Item {
     id: root
-    //controller 要控制大小的目标，可以是Item，也可以是view，只要提供x、y、width、height等属性的修改
+    //target 要控制大小的目标，可以是Item，也可以是view，只要提供x、y、width、height等属性的修改
     //默认值为parent
     anchors.fill: parent
 
-    property var control: parent
+    property var target: parent
 
     property int minWidth: 0
     property int minHeight: 0
@@ -19,16 +19,16 @@ Item {
         posType: posLeftTop
         width: border
         height: border
-        onPosChange: {
-            if (control.width - xOffset >= minWidth) {
-                control.width-= xOffset;
-                if (control.x + xOffset < control.x + control.width)
-                    control.x += xOffset;
+        onPosChanged: {
+            if (target.width - xOffset >= minWidth) {
+                target.width-= xOffset;
+                if (target.x + xOffset < target.x + target.width)
+                    target.x += xOffset;
             }
-            if (control.height -yOffset >= minHeight) {
-                control.height -= yOffset;
-                if (control.y + yOffset < control.y + control.height)
-                    control.y += yOffset;
+            if (target.height -yOffset >= minHeight) {
+                target.height -= yOffset;
+                if (target.y + yOffset < target.y + target.height)
+                    target.y += yOffset;
             }
         }
     }
@@ -39,14 +39,14 @@ Item {
         width: border
         height: border
         x: parent.width - width
-        onPosChange: {
+        onPosChanged: {
             //向左拖动时，xOffset为负数
-            if (control.width + xOffset >= minWidth)
-                control.width += xOffset;
-            if (control.height - yOffset >= minHeight) {
-                control.height -= yOffset;
-                if (control.y + yOffset < control.y + control.height)
-                    control.y += yOffset;
+            if (target.width + xOffset >= minWidth)
+                target.width += xOffset;
+            if (target.height - yOffset >= minHeight) {
+                target.height -= yOffset;
+                if (target.y + yOffset < target.y + target.height)
+                    target.y += yOffset;
             }
         }
     }
@@ -57,14 +57,14 @@ Item {
         width: border
         height: border
         y: parent.height - height
-        onPosChange: {
-            if (control.width - xOffset >= minWidth) {
-                control.width-= xOffset;
-                if (control.x + xOffset < control.x + control.width)
-                    control.x += xOffset;
+        onPosChanged: {
+            if (target.width - xOffset >= minWidth) {
+                target.width-= xOffset;
+                if (target.x + xOffset < target.x + target.width)
+                    target.x += xOffset;
             }
-            if (control.height + yOffset >= minHeight)
-                control.height += yOffset;
+            if (target.height + yOffset >= minHeight)
+                target.height += yOffset;
         }
     }
     //右下角拖拽
@@ -75,11 +75,11 @@ Item {
         height: border
         x: parent.width - width
         y: parent.height - height
-        onPosChange: {
-            if (control.width + xOffset >= minWidth)
-                control.width += xOffset;
-            if (control.height + yOffset >= minHeight)
-                control.height += yOffset;
+        onPosChanged: {
+            if (target.width + xOffset >= minWidth)
+                target.width += xOffset;
+            if (target.height + yOffset >= minHeight)
+                target.height += yOffset;
         }
     }
     //上边拖拽
@@ -88,12 +88,12 @@ Item {
         width: parent.width - leftTopHandle.width - rightTopHandle.width
         height: border
         x: leftBottomHandle.width
-        onPosChange: {
-            if (control.height - yOffset >= minHeight) {
-                control.height -= yOffset;
+        onPosChanged: {
+            if (target.height - yOffset >= minHeight) {
+                target.height -= yOffset;
 
-                if (control.y + yOffset < control.y + control.height)
-                    control.y += yOffset;
+                if (target.y + yOffset < target.y + target.height)
+                    target.y += yOffset;
             }
         }
     }
@@ -104,11 +104,11 @@ Item {
         width: border
         height: parent.height - leftTopHandle.height - leftBottomHandle.height
         y: leftTopHandle.height
-        onPosChange: {
-            if (control.width - xOffset >= minWidth) {
-                control.width-= xOffset;
-                if (control.x + xOffset < control.x + control.width)
-                    control.x += xOffset;
+        onPosChanged: {
+            if (target.width - xOffset >= minWidth) {
+                target.width-= xOffset;
+                if (target.x + xOffset < target.x + target.width)
+                    target.x += xOffset;
             }
         }
     }
@@ -119,9 +119,9 @@ Item {
         width: border
         height: parent.height - rightTopHandle.height - rightBottomHandle.height
         y: rightTopHandle.height
-        onPosChange: {
-            if (control.width + xOffset >= minWidth)
-                control.width += xOffset;
+        onPosChanged: {
+            if (target.width + xOffset >= minWidth)
+                target.width += xOffset;
         }
     }
     //下边拖拽
@@ -131,9 +131,9 @@ Item {
         y: parent.height - height
         width: parent.width - leftBottomHandle.width - rightBottomHandle.width
         height: border
-        onPosChange: {
-            if (control.height + yOffset >= minHeight)
-                control.height += yOffset;
+        onPosChanged: {
+            if (target.height + yOffset >= minHeight)
+                target.height += yOffset;
         }
     }
 
