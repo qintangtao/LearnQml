@@ -5,8 +5,10 @@ Rectangle {
     id: coverflow
     color: "black"
 
+    property alias pathView: pathView
     property alias model: pathView.model
-    property alias itemCount: pathView.pathItemCount
+    property alias itemCount: pathView.pathItemCount  //一次可见的子项数
+    property alias currentIndex: pathView.currentIndex
 
     property int itemWidth: 200
     property int itemHeight: 200
@@ -40,9 +42,9 @@ Rectangle {
                 anchors.left: image.left
                 anchors.top: image.bottom
                 width: image.width
-                height: image.height;
-                property variant source: image;
-                property size sourceSize: Qt.size(0.5 / image.width, 0.5 / image.height);
+                height: image.height
+                property variant source: image
+                property size sourceSize: Qt.size(0.5 / image.width, 0.5 / image.height)
                 property real colorScale: coverflow.colorScale
                 property real opacityScale: coverflow.opacityScale
                 fragmentShader: "
@@ -61,6 +63,22 @@ Rectangle {
                         } "
             }
 
+            /*
+                // 计算倒置坐标
+                lowp vec2 tc = qt_TexCoord0 * vec2(1, -1) + vec2(0, 1);
+                                                x=0.3                   y=0.4
+                * vec2(1, -1)       0.3*1=0.3         0.4*(-1)=-0.4
+                + vec2(0, 1)       0.3+0=0.3        -0.4+1=   0.6
+
+                // 采样
+                lowp vec4 col = colorScale * texture2D(source, tc);
+
+                // 透明度，越靠下透明度越低
+                1-qt_TexCoord0.y
+                1-0=1
+                1-0.5=0.5
+                1-1=0
+            */
             transform: Rotation{
                 origin.x:image.width/2.0
                 origin.y:image.height/2.0

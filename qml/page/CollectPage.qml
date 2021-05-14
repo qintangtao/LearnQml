@@ -287,12 +287,13 @@ Page {
                 height: parent.height
                 anchors.top: parent.top
                 model: modelCoverflow
-                itemCount: model.count
+                itemCount: model.count >= 5 ? 5 : 3
                 itemWidth: 300
                 itemHeight: 168
                 //colorScale: 0.8
                 //opacityScale: 0.1
                 clip: true
+                onCurrentIndexChanged: console.log("ACoverflow.currentIndex " + currentIndex)
         }
 
     }
