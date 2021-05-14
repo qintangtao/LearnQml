@@ -2,24 +2,24 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 
 Rectangle {
-    id:coverflow
-    color:"black"
+    id: coverflow
+    color: "black"
 
-    property ListModel model
+    property alias model: pathView.model
+    property alias itemCount: pathView.pathItemCount
 
-    property int itemCount: 5
     property int itemWidth: 200
     property int itemHeight: 200
+    property real colorScale: 0.25
+    property real opacityScale: 0.4
 
     PathView{
-        id:pathView
+        id: pathView
 
         anchors.fill: parent
-        path:coverFlowPath
-        pathItemCount: coverflow.itemCount
+        path: coverFlowPath
         preferredHighlightBegin: 0.5
         preferredHighlightEnd: 0.5
-        model:coverflow.model
 
         delegate: Rectangle {
             id:delegateItem
@@ -43,17 +43,21 @@ Rectangle {
                 height: image.height;
                 property variant source: image;
                 property size sourceSize: Qt.size(0.5 / image.width, 0.5 / image.height);
+                property real colorScale: coverflow.colorScale
+                property real opacityScale: coverflow.opacityScale
                 fragmentShader: "
                         varying highp vec2 qt_TexCoord0;
+                        uniform lowp float qt_Opacity;
                         uniform lowp sampler2D source;
                         uniform lowp vec2 sourceSize;
-                        uniform lowp float qt_Opacity;
+                        uniform lowp float colorScale;
+                        uniform lowp float opacityScale;
                         void main() {
                             lowp vec2 tc = qt_TexCoord0 * vec2(1, -1) + vec2(0, 1);
-                            lowp vec4 col = 0.25 * (texture2D(source, tc + sourceSize) + texture2D(source, tc- sourceSize)
-                            + texture2D(source, tc + sourceSize * vec2(1, -1))
-                            + texture2D(source, tc + sourceSize * vec2(-1, 1)));
-                            gl_FragColor = col * qt_Opacity * (1.0 - qt_TexCoord0.y) * 0.4;
+                            lowp vec4 col = colorScale * (texture2D(source, tc + sourceSize) + texture2D(source, tc- sourceSize)
+                                + texture2D(source, tc + sourceSize * vec2(1, -1))
+                                + texture2D(source, tc + sourceSize * vec2(-1, 1)));
+                            gl_FragColor = col * qt_Opacity * (1.0 - qt_TexCoord0.y) * opacityScale;
                         } "
             }
 

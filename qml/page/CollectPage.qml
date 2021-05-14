@@ -254,7 +254,7 @@ Page {
 
 
         ListModel{
-               id:model
+               id:modelCoverflow
                //ListElement{url: imgPath + "flow/01.png"}
                //ListElement{url: imgPath + "flow/02.png"}
                //ListElement{url: imgPath + "flow/03.png"}
@@ -275,6 +275,8 @@ Page {
                    append({"url": imgPath + "flow/03.jpg"});
                    append({"url": imgPath + "flow/04.jpg"});
                    append({"url": imgPath + "flow/05.jpg"});
+                   append({"url": imgPath + "flow/06.jpg"});
+                   append({"url": imgPath + "flow/07.jpg"});
                 }
            }
 
@@ -284,9 +286,12 @@ Page {
                 anchors.right: parent.right
                 height: parent.height
                 anchors.top: parent.top
-                model:model
+                model: modelCoverflow
+                itemCount: model.count
                 itemWidth: 300
                 itemHeight: 168
+                //colorScale: 0.8
+                //opacityScale: 0.1
                 clip: true
         }
 
