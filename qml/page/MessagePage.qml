@@ -2,6 +2,8 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.5
 
+import CppMessageInfo 1.0
+
 import "../js/common.js" as Common
 import "../BasicComponent/Others"
 import "../BasicComponent/Button"
@@ -190,9 +192,14 @@ Page {
                         anchors.fill: parent
                         hoverEnabled: true
                         onClicked: {listView.currentIndex = index; wrapper.color = "transparent";
-                            console.log("id is " + id)
+                            //console.log("id is " + id)
+                            console.log("index is " + index)
+                            var info = messageModel.messageInfoByRow(index);
+                            console.log("info is " + info)
+                            info.setDesc(desc + ",add")
+                            info.setName(name + ",2", true)
                             //messageModel.setName(id, name + ",add")
-                            messageModel.setDesc(id, desc + ",add")
+                            //messageModel.setDesc(id, desc + ",add")
                         }
                         onEntered: {if(!wrapper.ListView.isCurrentItem) wrapper.color = "#DCDBDA"; vScrollBar.visible=true;}
                         onExited: {if(!wrapper.ListView.isCurrentItem) wrapper.color = "transparent"; vScrollBar.visible=false;}

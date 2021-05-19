@@ -138,6 +138,21 @@ MessageModel::~MessageModel()
     }
 }
 
+MessageInfo *MessageModel::messageInfo(const QModelIndex& index)
+{
+    if (!index.isValid())
+        return NULL;
+
+    return m_dPtr->m_datas.at(index.row());
+}
+MessageInfo *MessageModel::messageInfoById(int id)
+{
+    return messageInfo(indexById( id));
+}
+MessageInfo *MessageModel::messageInfoByRow(int row) {
+    return messageInfo(QAbstractListModel::index(row));
+}
+
 int MessageModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
@@ -250,6 +265,7 @@ bool MessageModel::moveRow(const int& sourceRow, const int& desRow)
     return true;
 }
 
+#if 0
 void MessageModel::setName(int id, const QString &text)
 {
     QModelIndex index = this->id(id);
@@ -277,12 +293,12 @@ void MessageModel::setDesc(int id, const QString &text)
     foreach(MessageInfo *info, m_dPtr->m_datas)
         qDebug() << "+" << info->id();
 }
-
+#endif
 
 void MessageModel::onNameChanged(QString name)
 {
     MessageInfo *info  = (MessageInfo *)sender();
-    QModelIndex index = this->id(info->id());
+    QModelIndex index = indexById(info->id());
     if (!index.isValid())
         return;
 
@@ -292,18 +308,18 @@ void MessageModel::onNameChanged(QString name)
 void MessageModel::onDescChanged(QString desc)
 {
     MessageInfo *info  = (MessageInfo *)sender();
-    QModelIndex index = this->id(info->id());
+    QModelIndex index = indexById(info->id());
     if (!index.isValid())
         return;
 
     dataChanged(index, index, QVector<int>() << MessageModelPrivate::Role_Desc);
 }
 
-QModelIndex MessageModel::id(int id)
+QModelIndex MessageModel::indexById(int id)
 {
-    int size = m_dPtr->m_datas.size();
-    for (int i = 0; i < size; i++) {
-        QModelIndex index = this->index(i) ;
+    int count = rowCount(QModelIndex());
+    for (int i = 0; i < count; i++) {
+        QModelIndex index = QAbstractListModel::index(i) ;
         QVariant v = data(index, MessageModelPrivate::Role_Id);
         if (v.isValid() && v.toInt() == id)
             return index;

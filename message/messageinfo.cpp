@@ -1,5 +1,12 @@
 #include "messageinfo.h"
 
+MessageInfo::MessageInfo(QObject *parent)
+    : QObject(parent)
+    , m_id(0)
+    , m_date(0)
+    , m_remind(false)
+{
+}
 
 MessageInfo::MessageInfo(int id, QObject *parent)
     : QObject(parent)

@@ -13,6 +13,7 @@ class MessageInfo : public QObject
     Q_PROPERTY(bool remind READ isRemind WRITE setRemind NOTIFY remindChanged)
 
 public:
+    MessageInfo(QObject *parent = 0);
     MessageInfo(int id, QObject *parent = 0);
     ~MessageInfo();
 

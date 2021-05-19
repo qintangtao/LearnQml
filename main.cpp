@@ -8,6 +8,7 @@
 #include "contact/contactmodel.h"
 #include "look/lookinfo.h"
 #include "look/look.h"
+#include "message/messageinfo.h"
 
 int main(int argc, char *argv[])
 {
@@ -30,6 +31,8 @@ int main(int argc, char *argv[])
     //注册类型
     //qmlRegisterType<CppObject>("MyCppObject",1,0,"CppObject");
     qmlRegisterType<LookInfo>("CppLookInfo",1,0,"LookInfo");
+    qmlRegisterType<MessageInfo>("CppMessageInfo",1,0,"MessageInfo");
+
 
     engine.load(QUrl(qmlPath + QStringLiteral("main.qml")));
     if (engine.rootObjects().isEmpty())
